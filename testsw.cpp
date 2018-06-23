@@ -110,12 +110,20 @@ namespace spin {
   }
   
   void init() {
+//     start_but=new Button(bgwin,0,Rect(100,80,32,16),"stop",
+//       [&](Button *but) {
+//         run=!run;
+//         but->label= !run ? "start" : "stop";
+//         if (run) SDL_CreateThread(thread_fun,"thread_fun", 0);
+//       });
+
     start_but=new Button(bgwin,0,Rect(100,80,32,16),"stop",
-      [&](Button *but) {
-        run=!run;
-        but->label= !run ? "start" : "stop";
-        if (run) SDL_CreateThread(thread_fun,"thread_fun", 0);
+      [](Button *but) {
+//        run=!run;
+//        but->label= !run ? "start" : "stop";
+//        if (run) SDL_CreateThread(thread_fun,"thread_fun", 0);
       });
+
     for (int i=0;i<pnt_max;++i) {
       float x=loc[i].x,
             y=loc[i].y;
@@ -348,7 +356,8 @@ void otw_cmd(Button *but) {
 int th_fun(void *arg) {
   static int n=0; // output should be: 'th_fun: n=0' 'th_fun: n=1'
   while (n<2) {
-    send_uev([=](int) { printf("th_fun: n=%d\n",n); },0);
+//    send_uev([=](int) { printf("th_fun: n=%d\n",n); },0);
+    send_uev([](int) { printf("th_fun: n=%d\n",111); },0);
     ++n;
   }
   return 0;
